@@ -1,2 +1,9 @@
 /* Component-level styles for the UI package */
 @import "tailwindcss";
+
+@theme {
+    --color-dark: #121212;
+    --color-buttonBlue: #4150F7;
+    --color-deepGray: #363636;
+    --color-liteGray: #A8A8A8;
+}
