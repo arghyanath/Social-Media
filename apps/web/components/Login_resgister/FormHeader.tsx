@@ -1,10 +1,10 @@
 import { ReactElement } from "react"
-import { VistagramHeader } from "./vistagramHeader"
+import { VistagramHeader } from "../vistagramHeader"
 
 interface PropsTypes {
     children: ReactElement
 }
-export function SignComponent({ children }: PropsTypes) {
+export function FormHeader({ children }: PropsTypes) {
 
     return <div className="flex flex-col gap-4">
         <div className="text-center">   <VistagramHeader size="lg" /></div>

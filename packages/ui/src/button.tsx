@@ -1,8 +1,8 @@
 
-import { ReactElement } from "react"
+import { ReactNode } from "react"
 
 interface PropsTypes {
-    children: ReactElement,
+    children: ReactNode,
     onClick?: () => void,
     varient: styleType
 }

@@ -1,6 +1,6 @@
 "use client"
 import { ProfileIcon } from "@repo/ui/icons/profileIcon";
-import { VistagramHeader } from "../Login_resgister/vistagramHeader";
+import { VistagramHeader } from "../vistagramHeader";
 import { useState } from "react";
 import { LogoutModal } from "../modals/logoutModal";
 import { useSession } from "next-auth/react";
@@ -21,8 +21,8 @@ export function Appbar() {
 
     return <div>
 
-        <div className=" text-white fixed top-0 left-0 w-screen flex justify-between px-6 items-center h-16 border-b-2 bg-black border-dark z-10 ">
-            {showModel && <LogoutModal onClick={toggleModal} />}
+        <div className=" text-white fixed top-0 left-0 w-screen flex justify-between px-6 items-center h-16 border-b-2 bg-black border-dark z-10">
+            {showModel && <LogoutModal onClose={toggleModal} />}
             <div><VistagramHeader size="sm" /></div>
             {session.status === "authenticated" ?
                 <div onClick={toggleModal}><ProfileIcon size="sm"

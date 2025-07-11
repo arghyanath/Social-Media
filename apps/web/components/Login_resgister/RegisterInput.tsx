@@ -13,9 +13,9 @@ export default function RegisterInput() {
     const router = useRouter();
 
     return <div className="gap-2 flex flex-col ">
-        <Input placeholder="Full Name" round="none" reference={nameRef} />
-        <Input placeholder="Email" round="none" reference={emailRef} />
-        <Input placeholder="Password" round="none" reference={passwordRef} />
+        <Input placeholder="Full Name" reference={nameRef} />
+        <Input placeholder="Email" reference={emailRef} />
+        <Input placeholder="Password" reference={passwordRef} />
         <Button varient="primary" onClick={async () => {
             await createUser(emailRef.current?.value ?? "", passwordRef.current?.value ?? "", nameRef.current?.value ?? "")
             router.push("/login")

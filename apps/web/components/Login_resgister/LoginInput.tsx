@@ -11,8 +11,8 @@ export default function LoginInput() {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     return <div className="gap-2 flex flex-col ">
-        <Input placeholder="Email" round="none" reference={emailRef} />
-        <Input placeholder="Password" round="none" reference={passwordRef} />
+        <Input placeholder="Email" reference={emailRef} />
+        <Input placeholder="Password" reference={passwordRef} />
         <Button varient="primary" onClick={async () => {
             if (
                 emailRef.current &&

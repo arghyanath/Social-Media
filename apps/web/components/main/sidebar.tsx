@@ -1,9 +1,10 @@
 import { Icons } from "../../../../packages/ui/src/icons/icons"
 import { ProfileButton } from "../profileButton"
+import { SettingButton } from "../settingsButton"
 import { SidebarItem } from "../sidebarItems"
 
 export function Sidebar() {
-    return <div className="w-64 h-screen bg-black fixed top-0 left-0 flex flex-col" >
+    return <div className="w-64 h-screen bg-black fixed top-0 left-0 flex flex-col z-0" >
         <div className="p-6 mt-16">
             <div className="flex flex-col gap-2">
                 <SidebarItem to="/home" title="Home" icon={<Icons size="lg" name='homeIcon' />} />
@@ -12,8 +13,8 @@ export function Sidebar() {
                 <SidebarItem to="/messages" title="Messages" icon={<Icons size="lg" name='messageIcon' />} />
                 <SidebarItem to="/home" title="Notification" icon={<Icons size="lg" name='notificationIcon' />} />
                 <SidebarItem to="/saved" title="Saved" icon={<Icons size="lg" name='saveIcon' />} />
-                <SidebarItem title="Settings" icon={<Icons size="lg" name='settingsIcon' />} />
-                <div className="mt-4"><ProfileButton /></div>
+                <SettingButton />
+
 
             </div>
 
