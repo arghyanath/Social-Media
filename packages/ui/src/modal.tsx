@@ -2,7 +2,7 @@
 
 import { ReactNode, useRef } from "react"
 interface ModalProps {
-    onClose: () => void,
+    onClose?: () => void,
     position: positionType,
     children: ReactNode,
     modalStyle: string,
@@ -23,7 +23,7 @@ export function Modal({ onClose, children, position, modalStyle, backgroundSlye 
     const modalRef = useRef<HTMLDivElement>(null);
     function closeModal(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         if (modalRef.current === e.target) {
-            onClose()
+            onClose && onClose()
         }
     }
 

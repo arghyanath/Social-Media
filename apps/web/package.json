@@ -13,9 +13,12 @@
   "dependencies": {
     "@repo/ui": "workspace:*",
     "@types/bcrypt": "^5.0.2",
+    "@types/formidable": "^3.4.5",
     "axios": "^1.10.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.7.0",
+    "formidable": "^3.5.4",
+    "multer": "^2.0.1",
     "next": "^15.3.0",
     "next-auth": "^4.24.11",
     "react": "^19.1.0",
