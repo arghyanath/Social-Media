@@ -4,13 +4,14 @@ import { Icons } from "@repo/ui/icons/icons";
 import { Input } from "@repo/ui/input";
 import { Modal } from "@repo/ui/modal";
 import React, { useRef, useState } from "react";
-import { uploadFile } from "../../app/utils/uploadFiles";
-
-
+import { createPost } from "../../app/lib/actions/createPost";
 export function CreatePostModal({ onClose }: { onClose: () => void }) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [loading, setLoading] = useState(false)
     const [imgUrl, setImageUrl] = useState("")
+    const [image, setImage] = useState<File>()
+    const titleRef = useRef<HTMLInputElement>(null)
+    const captionRef = useRef<HTMLTextAreaElement>(null)
 
     function handleClick() {
         if (!imgUrl) inputRef.current?.click()
@@ -20,29 +21,58 @@ export function CreatePostModal({ onClose }: { onClose: () => void }) {
         const file = e.target.files?.[0]
         if (!file) return
         setImageUrl(URL.createObjectURL(file))
-        return file
-
+        setImage(file)
     }
-    async function createPost(image: File) {
-        setLoading(true)
-        const form = new FormData()
-        form.append("file", image)
-        const res = await uploadFile(form)
-        setLoading(false)
+    async function post(e: React.MouseEvent) {
+        e.preventDefault()
+        if (image && titleRef.current && captionRef.current) {
+            setLoading(true)
+            const res = await createPost(image, titleRef.current.value, captionRef.current.value)
+            console.log(res)
+
+            if (res.status === "success") {
+
+
+                if (inputRef.current) inputRef.current.value = ""
+                if (captionRef.current) captionRef.current.value = ""
+                if (titleRef.current) titleRef.current.value = ""
+                setLoading(false)
+                alert("posted")
+                onClose()
+            }
+            else {
+
+                if (inputRef.current) inputRef.current.value = ""
+                if (captionRef.current) captionRef.current.value = ""
+                if (titleRef.current) titleRef.current.value = ""
+                setImageUrl("")
+                setLoading(false)
+                alert("failed to post")
+            }
+
+        }
+
+
     }
 
     return <Modal backgroundSlye=" backdrop-blur-xs z-20" position='middle'
         modalStyle="w-110 h-150 flex flex-col gap-4 p-6 bg-dark relative rounded text-white ">
+        {loading && <div className=" w-full h-full absolute top-0 right-0 bg-black opacity-70">
+            loading....
+        </div>}
 
         <div onClick={onClose} className="cursor-pointer  absolute top-2 right-2">
             <Icons size="lg" name='circleCrossIcon' />
         </div>
 
         <div className="text-center my-3 text-xl font-medium">What's in your mind ?</div>
+        <form action="">
 
-        <Input placeholder="Title" customStyle="rounded border outline-none border-deepGray p-2 " />
+        </form>
 
-        <textarea className="border rounded resize-none scrollbar-none p-2 border-deepGray bg-dark outline-none " placeholder="Caption"></textarea>
+        <Input reference={titleRef} placeholder="Title" customStyle="rounded border outline-none border-deepGray p-2 " />
+
+        <textarea ref={captionRef} className="border rounded resize-none scrollbar-none p-2 border-deepGray bg-dark outline-none " placeholder="Caption"></textarea>
 
         <div className="w-full rounded-md flex justify-center items-center h-64 border border-liteGray bg-black  " onClick={handleClick}>
 
@@ -68,12 +98,15 @@ export function CreatePostModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="flex justify-center items-center">
-            <Button varient="primary"> <div className="flex gap-2"> <Icons size="md" name='postIcon' />Post</div></Button>
+            <Button onClick={post} varient="primary"> <div className="flex gap-2"> <Icons size="md" name='postIcon' />Post</div></Button>
         </div>
 
 
 
 
-    </Modal>
 
+
+    </Modal>
 }
+
+

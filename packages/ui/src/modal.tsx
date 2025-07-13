@@ -21,7 +21,7 @@ type positionType = keyof typeof modalPosition
 export function Modal({ onClose, children, position, modalStyle, backgroundSlye }: ModalProps) {
 
     const modalRef = useRef<HTMLDivElement>(null);
-    function closeModal(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    function closeModal(e: React.MouseEvent) {
         if (modalRef.current === e.target) {
             onClose && onClose()
         }

@@ -1,10 +1,11 @@
 
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 
 interface PropsTypes {
     children: ReactNode,
-    onClick?: () => void,
-    varient: styleType
+    onClick?: (e: React.MouseEvent) => void,
+    varient: styleType,
+
 }
 
 const style = {
@@ -15,7 +16,7 @@ const style = {
 type styleType = keyof typeof style;
 
 export function Button({ children, onClick, varient }: PropsTypes) {
-    return <button onClick={onClick} className={`py-3 px-5 font-bold text-white cursor-pointer rounded-md ${style[varient]}`}>
+    return <button onClick={onClick} className={`py-3 px-5 font-bold text-white cursor-pointer  ${style[varient]}  rounded-md `}>
         {children}
     </button>
 }

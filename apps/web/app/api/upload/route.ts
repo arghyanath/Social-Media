@@ -17,10 +17,7 @@ interface CloudinaryResult {
 
 
 export async function POST(request: NextRequest) {
-    const user = await getServerSession(authOptions);
-    if (!user) {
-        return NextResponse.json({ error: "unauthrised" })
-    }
+
     try {
         const formData = await request.formData();
         const file = formData.get("file") as File;
