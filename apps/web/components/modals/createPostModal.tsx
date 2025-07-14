@@ -4,7 +4,7 @@ import { Icons } from "@repo/ui/icons/icons";
 import { Input } from "@repo/ui/input";
 import { Modal } from "@repo/ui/modal";
 import React, { useRef, useState } from "react";
-import { createPost } from "../../app/lib/actions/createPost";
+import { createPost } from "../../lib/actions/createPost";
 export function CreatePostModal({ onClose }: { onClose: () => void }) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [loading, setLoading] = useState(false)

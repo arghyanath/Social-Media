@@ -2,7 +2,7 @@
 import { Button } from "@repo/ui/button";
 import { Input } from "@repo/ui/input";
 import { useRef } from "react";
-import { createUser } from "../../app/lib/actions/createUser";
+import { createUser } from "../../lib/actions/createUser";
 import { useRouter } from "next/navigation";
 
 

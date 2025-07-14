@@ -2,7 +2,7 @@ import axios from "axios"
 export async function uploadFile(file: File) {
     const form = new FormData()
     form.append("file", file)
-    const res = await axios.post(`http://localhost:3000/api/upload`,
+    const res = await axios.post(`${process.env.API_URL}/upload`,
         form
     )
     const url = res.data

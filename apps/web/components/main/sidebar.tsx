@@ -4,7 +4,7 @@ import { SettingButton } from "../settingsButton"
 import { SidebarItem } from "../sidebarItems"
 
 export function Sidebar() {
-    return <div className="w-64 h-screen bg-black fixed top-0 left-0 flex flex-col z-0" >
+    return <div className="w-64 border-r-2 border-dark h-screen bg-black fixed top-0 left-0 flex flex-col z-0" >
         <div className="p-6 mt-16">
             <div className="flex flex-col gap-2">
                 <SidebarItem to="/home" title="Home" icon={<Icons size="lg" name='homeIcon' />} />

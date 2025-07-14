@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { MiddlePart } from "../../../components/main/homeMiddlePart";
 import { RightSide } from "../../../components/main/HomeRightPart";
-import { authOptions } from "../../lib/auth";
+import { authOptions } from "../../../lib/auth";
 
 
 export default async function Page() {
