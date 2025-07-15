@@ -25,38 +25,29 @@ export function CreatePostModal({ onClose }: { onClose: () => void }) {
     }
     async function post(e: React.MouseEvent) {
         e.preventDefault()
-        if (image && titleRef.current && captionRef.current) {
-            setLoading(true)
-            const res = await createPost(image, titleRef.current.value, captionRef.current.value)
-            console.log(res)
-
-            if (res.status === "success") {
-
-
-                if (inputRef.current) inputRef.current.value = ""
-                if (captionRef.current) captionRef.current.value = ""
-                if (titleRef.current) titleRef.current.value = ""
-                setLoading(false)
-                alert("posted")
-                onClose()
-            }
-            else {
-
-                if (inputRef.current) inputRef.current.value = ""
-                if (captionRef.current) captionRef.current.value = ""
-                if (titleRef.current) titleRef.current.value = ""
-                setImageUrl("")
-                setLoading(false)
-                alert("failed to post")
-            }
-
+        if (!imgUrl) return
+        if (!image || !titleRef.current || !captionRef.current) return
+        setLoading(true)
+        const res = await createPost(image, titleRef.current.value, captionRef.current.value)
+        console.log(res)
+        if (res.status === "success") {
+            alert("posted")
+            onClose()
         }
+        else {
 
+            alert("failed to post")
+        }
+        setLoading(false)
+        if (inputRef.current) inputRef.current.value = ""
+        if (captionRef.current) captionRef.current.value = ""
+        if (titleRef.current) titleRef.current.value = ""
+        setImageUrl("")
 
     }
 
     return <Modal backgroundSlye=" backdrop-blur-xs z-20" position='middle'
-        modalStyle="w-110 h-150 flex flex-col gap-4 p-6 bg-dark relative rounded text-white ">
+        modalStyle="w-110 h-140 flex flex-col gap-4 p-6 bg-dark relative rounded text-white ">
         {loading && <div className=" w-full h-full absolute top-0 right-0 bg-black opacity-70">
             loading....
         </div>}
@@ -65,16 +56,13 @@ export function CreatePostModal({ onClose }: { onClose: () => void }) {
             <Icons size="lg" name='circleCrossIcon' />
         </div>
 
-        <div className="text-center my-3 text-xl font-medium">What's in your mind ?</div>
-        <form action="">
-
-        </form>
+        <div className="text-center mt-3 text-xl font-medium">What's in your mind ?</div>
 
         <Input reference={titleRef} placeholder="Title" customStyle="rounded border outline-none border-deepGray p-2 " />
 
         <textarea ref={captionRef} className="border rounded resize-none scrollbar-none p-2 border-deepGray bg-dark outline-none " placeholder="Caption"></textarea>
 
-        <div className="w-full rounded-md flex justify-center items-center h-64 border border-liteGray bg-black  " onClick={handleClick}>
+        <div className="w-full rounded-md flex justify-center items-center h-64 border border-deepGray bg-black  " onClick={handleClick}>
 
             <div className="flex justify-center w-full h-full items-center relative gap-1 ">
                 {imgUrl && <div onClick={() => {

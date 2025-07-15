@@ -1,5 +1,5 @@
 import { ReactElement } from "react"
-import { VistagramHeader } from "../vistagramHeader"
+import { VistagramHeader } from "../Appbar/vistagramHeader"
 
 interface PropsTypes {
     children: ReactElement

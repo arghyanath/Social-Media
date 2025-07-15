@@ -9,14 +9,14 @@ interface PropsTypes {
 }
 
 const style = {
-    "primary": "  bg-white text-black",
-    "secondary": "text-white outline-2 outline-dark hover:outline hover:outline-deepGray "
+    "primary": "  bg-buttonBlue text-white",
+    "secondary": "text-white  hover:outline hover:outline-deepGray "
 }
 
 type styleType = keyof typeof style;
 
 export function Button({ children, onClick, varient }: PropsTypes) {
-    return <button onClick={onClick} className={`py-3 px-5 font-bold  cursor-pointer  ${style[varient]}  rounded `}>
+    return <button onClick={onClick} className={`py-3  px-5 font-bold  cursor-pointer  ${style[varient]}  rounded `}>
         {children}
     </button>
 }

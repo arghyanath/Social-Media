@@ -10,7 +10,7 @@ export default function LoginInput() {
     const router = useRouter()
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    return <div className="gap-2 flex flex-col ">
+    return <div className="gap-3 flex flex-col ">
         <Input placeholder="Email" reference={emailRef} />
         <Input placeholder="Password" reference={passwordRef} />
         <Button varient="primary" onClick={async () => {

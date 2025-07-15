@@ -1,8 +1,8 @@
 "use client"
 import { ProfileIcon } from "@repo/ui/icons/profileIcon";
-import { VistagramHeader } from "../vistagramHeader";
+import { VistagramHeader } from "./vistagramHeader";
 import { useState } from "react";
-import { LogoutModal } from "../modals/logoutModal";
+import { LogoutModal } from "./logoutModal";
 import { useSession } from "next-auth/react";
 import { Button } from "@repo/ui/button";
 import { useRouter } from "next/navigation";

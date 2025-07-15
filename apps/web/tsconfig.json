@@ -13,7 +13,8 @@
     "next-env.d.ts",
     "next.config.ts",
     ".next/types/**/*.ts",
-    "../../packages/ui/src/modal.tsx"
+    "../../packages/ui/src/modal.tsx",
+    "utils/getUsersPost.ts"
   ],
   "exclude": [
     "node_modules"

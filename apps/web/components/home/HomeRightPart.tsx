@@ -1,5 +1,5 @@
 
-import { ProfileButton } from "../profileButton";
+import { ProfileButton } from "../profile/profileButton";
 
 
 export function RightSide() {

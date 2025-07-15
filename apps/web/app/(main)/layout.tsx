@@ -1,5 +1,5 @@
-import { Appbar } from "../../components/main/Appbar";
-import { Sidebar } from "../../components/main/sidebar";
+import { Appbar } from "../../components/Appbar/Appbar";
+import { Sidebar } from "../../components/sidebar/sidebar";
 
 
 export default async function Layout({

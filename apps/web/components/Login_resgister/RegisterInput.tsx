@@ -12,7 +12,7 @@ export default function RegisterInput() {
     const nameRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
-    return <div className="gap-2 flex flex-col ">
+    return <div className="gap-3 flex flex-col ">
         <Input placeholder="Full Name" reference={nameRef} />
         <Input placeholder="Email" reference={emailRef} />
         <Input placeholder="Password" reference={passwordRef} />

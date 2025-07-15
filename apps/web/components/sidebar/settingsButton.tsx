@@ -2,7 +2,7 @@
 import { Icons } from "@repo/ui/icons/icons";
 import { SidebarItem } from "./sidebarItems";
 import { useState } from "react";
-import { SettingsModal } from "./modals/settingsModal";
+import { SettingsModal } from "./settingsModal";
 
 export function SettingButton() {
     const [showModel, setShowModel] = useState(false);

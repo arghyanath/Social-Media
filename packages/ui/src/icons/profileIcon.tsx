@@ -2,7 +2,7 @@ const style = {
     "sm": "w-10 h-10",
     "md": "w-12 h-12",
     "lg": "w-14 h-14",
-    "profile": "w-56 h-56"
+    "profile": "w-44 h-44"
 } as const
 type sizeType = keyof typeof style
 

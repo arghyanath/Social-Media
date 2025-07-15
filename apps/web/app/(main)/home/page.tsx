@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import { MiddlePart } from "../../../components/main/homeMiddlePart";
-import { RightSide } from "../../../components/main/HomeRightPart";
+import { MiddlePart } from "../../../components/home/homeMiddlePart";
+import { RightSide } from "../../../components/home/HomeRightPart";
 import { authOptions } from "../../../lib/auth";
 
 

@@ -1,6 +1,6 @@
 "use client"
 import { signOut } from "next-auth/react"
-import { ProfileButton } from "../profileButton"
+import { ProfileButton } from "../profile/profileButton"
 import { useRouter } from "next/navigation"
 import { Button } from "@repo/ui/button"
 import { Modal } from "@repo/ui/modal"

@@ -12,6 +12,15 @@ export async function GET(
             where: {
                 userId: Number(userId)
             },
+            include: {
+                User: {
+                    select: {
+                        id: true,
+                        name: true,
+                        image: true
+                    }
+                }
+            },
             orderBy: {
                 createdAt: "desc"
             }

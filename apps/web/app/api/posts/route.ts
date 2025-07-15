@@ -9,6 +9,7 @@ export async function GET() {
             include: {
                 User: {
                     select: {
+                        id: true,
                         name: true,
                         image: true
                     }

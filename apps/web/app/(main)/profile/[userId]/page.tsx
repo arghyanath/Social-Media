@@ -1,22 +1,18 @@
-
-
 import { getServerSession } from "next-auth";
-import { ProfileDetails } from "../../../components/profile/profileDetails";
-import { getUsersPosts } from "../../../utils/getUsersPost";
-import { authOptions } from "../../../lib/auth";
+import { ProfileDetails } from "../../../../components/profile/profileDetails";
+import { getUsersPosts } from "../../../../utils/getUsersPost";
+import { authOptions } from "../../../../lib/auth";
+import { redirect } from "next/navigation";
 
-export default async function Profile() {
-    const session = await getServerSession(authOptions)
-    if (!(session && session.user)) return <div>User not logged in</div>
-    const fullName = String(session.user.name)
-    const avatar = String(session.user.image);
-    const id = String(session.user.id)
-    const allposts = await getUsersPosts(id)
+export default async function Page({ params }: { params: Promise<{ userId: string }> }) {
 
+    const { userId } = await params
+    const allposts = await getUsersPosts(userId)
     return (
+
         <div className=" text-white flex  ml-58  p-6 ">
             <div className=" ">
-                <ProfileDetails fullName={fullName} avatar={avatar} />
+                <ProfileDetails fullName={allposts.posts[0].User.name} avatar={String(allposts.posts[0].User.image)} />
             </div>
 
             <div className=" flex gap-4 flex-wrap ml-6 ">
@@ -36,5 +32,7 @@ export default async function Profile() {
             </div>
 
         </div>
+
+
     );
 }
