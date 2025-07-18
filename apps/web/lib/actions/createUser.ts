@@ -7,7 +7,7 @@ export async function createUser(email: string, password: string, name: string) 
 
     try {
         const user = CreateUserSchema.safeParse({ email, password, name })
-        if (!user.success) return "Please provide valid inputs"
+        if (!user.success) return { message: "Please provide valid inputs" }
         await db.user.create({
             data: {
                 email: user.data.email,

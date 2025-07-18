@@ -15,13 +15,16 @@ export default function RegisterInput() {
     return <div className="gap-3 flex flex-col ">
         <Input placeholder="Full Name" reference={nameRef} />
         <Input placeholder="Email" reference={emailRef} />
-        <Input placeholder="Password" reference={passwordRef} />
+        <Input placeholder="Password(min 6 characters)" reference={passwordRef} />
         <Button varient="primary" onClick={async (e) => {
             e.preventDefault()
             if (emailRef.current && passwordRef.current && nameRef.current) {
-                const res = await createUser(emailRef.current?.value ?? "", passwordRef.current?.value ?? "", nameRef.current?.value ?? "")
-                alert(res)
-                router.push("/api/auth/login")
+                const res = await createUser(emailRef.current.value, passwordRef.current.value, nameRef.current?.value)
+                alert(res.message)
+                if (res.message === "Signed up") {
+                    router.push("/api/auth/login")
+                }
+
             }
 
         }}><div>Sign up</div></Button>
