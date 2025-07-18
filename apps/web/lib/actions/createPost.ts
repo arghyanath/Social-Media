@@ -3,13 +3,13 @@ import db from "@repo/db/client"
 import { uploadFile } from "../../utils/uploadFiles"
 import { getServerSession } from "next-auth"
 import { authOptions } from "../auth"
+import { usePostStore } from "../store/usePostStore"
 export async function createPost(file: File, title: string, caption: string) {
     const session = await getServerSession(authOptions)
     if (!session?.user) return { status: "failure" }
 
     const userId = Number(session.user.id)
     const imageUrl = await uploadFile(file)
-    console.log(imageUrl);
 
     try {
 

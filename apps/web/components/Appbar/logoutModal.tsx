@@ -14,7 +14,7 @@ export function LogoutModal({ onClose }: { onClose: () => void }) {
         </div>
         <Button varient="secondary" onClick={async () => {
             await signOut({ redirect: false })
-            router.push("/login")
+            router.push("/api/auth/login")
         }}><div className="text-red-500">Logout</div></Button>
     </Modal>
 }

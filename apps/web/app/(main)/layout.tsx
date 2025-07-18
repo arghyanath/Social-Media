@@ -2,6 +2,7 @@ import { Appbar } from "../../components/Appbar/Appbar";
 import { Sidebar } from "../../components/sidebar/sidebar";
 
 
+
 export default async function Layout({
     children,
 }: {
@@ -15,6 +16,7 @@ export default async function Layout({
             <Appbar />
             <Sidebar />
             {children}
+
 
         </main>
 

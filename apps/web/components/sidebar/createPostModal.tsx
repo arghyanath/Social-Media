@@ -5,6 +5,7 @@ import { Input } from "@repo/ui/input";
 import { Modal } from "@repo/ui/modal";
 import React, { useRef, useState } from "react";
 import { createPost } from "../../lib/actions/createPost";
+import { useRouter } from "next/navigation";
 export function CreatePostModal({ onClose }: { onClose: () => void }) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [loading, setLoading] = useState(false)
@@ -12,6 +13,7 @@ export function CreatePostModal({ onClose }: { onClose: () => void }) {
     const [image, setImage] = useState<File>()
     const titleRef = useRef<HTMLInputElement>(null)
     const captionRef = useRef<HTMLTextAreaElement>(null)
+    const router = useRouter()
 
     function handleClick() {
         if (!imgUrl) inputRef.current?.click()
@@ -29,9 +31,9 @@ export function CreatePostModal({ onClose }: { onClose: () => void }) {
         if (!image || !titleRef.current || !captionRef.current) return
         setLoading(true)
         const res = await createPost(image, titleRef.current.value, captionRef.current.value)
-        console.log(res)
         if (res.status === "success") {
             alert("posted")
+            router.refresh();
             onClose()
         }
         else {

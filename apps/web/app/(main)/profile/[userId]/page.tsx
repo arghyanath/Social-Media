@@ -1,13 +1,12 @@
-import { getServerSession } from "next-auth";
+
 import { ProfileDetails } from "../../../../components/profile/profileDetails";
-import { getUsersPosts } from "../../../../utils/getUsersPost";
-import { authOptions } from "../../../../lib/auth";
-import { redirect } from "next/navigation";
+import axios from "axios";
 
 export default async function Page({ params }: { params: Promise<{ userId: string }> }) {
 
     const { userId } = await params
-    const allposts = await getUsersPosts(userId)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${userId}`)
+    const allposts: Posts = response.data
     return (
 
         <div className=" text-white flex  ml-58  p-6 ">

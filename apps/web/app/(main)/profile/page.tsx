@@ -2,8 +2,8 @@
 
 import { getServerSession } from "next-auth";
 import { ProfileDetails } from "../../../components/profile/profileDetails";
-import { getUsersPosts } from "../../../utils/getUsersPost";
 import { authOptions } from "../../../lib/auth";
+import axios from "axios";
 
 export default async function Profile() {
     const session = await getServerSession(authOptions)
@@ -11,7 +11,9 @@ export default async function Profile() {
     const fullName = String(session.user.name)
     const avatar = String(session.user.image);
     const id = String(session.user.id)
-    const allposts = await getUsersPosts(id)
+
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`)
+    const allposts: Posts = response.data
 
     return (
         <div className=" text-white flex  ml-58  p-6 ">

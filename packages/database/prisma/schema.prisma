@@ -8,22 +8,57 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
   password  String
   bio       String?
   name      String?
   image     String?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
   posts     Post[]
+  Follower  Follow[]  @relation("FollowerRelation")
+  Following Follow[]  @relation("FollowingRelation")
+  Like      Like[]
+  Comment   Comment[]
+}
+
+model Follow {
+  id         Int  @id @default(autoincrement())
+  followerId Int  @unique
+  Follower   User @relation("FollowerRelation", fields: [followerId], references: [id])
+
+  followingId Int  @unique
+  Following   User @relation("FollowingRelation", fields: [followingId], references: [id])
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   imageUrl  String?
   title     String
   caption   String?
-  createdAt DateTime @default(now())
-  User      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+  User      User      @relation(fields: [userId], references: [id])
   userId    Int
+  Like      Like[]
+  Comment   Comment[]
+}
+
+model Like {
+  createAt DateTime @default(now())
+  userId   Int
+  User     User     @relation(fields: [userId], references: [id])
+  postId   Int
+  Post     Post     @relation(fields: [postId], references: [id])
+
+  @@id(name: "likeId", [userId, postId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  comment   String
+  userId    Int
+  User      User     @relation(fields: [userId], references: [id])
+  postId    Int
+  Post      Post     @relation(fields: [postId], references: [id])
 }

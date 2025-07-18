@@ -1,3 +1,5 @@
+import { Icons } from "./icons"
+
 const style = {
     "sm": "w-10 h-10",
     "md": "w-12 h-12",
@@ -13,7 +15,10 @@ interface PropsType {
 }
 
 export function ProfileIcon({ size, imgUrl }: PropsType) {
+
     return <div className={style[size]}>
-        <img className="rounded-full" src={imgUrl} alt="profile pic" />
+        {imgUrl === "null" ? <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" className="rounded-full" alt="" /> :
+            <img className="rounded-full" src={imgUrl} />
+        }
     </div>
 }

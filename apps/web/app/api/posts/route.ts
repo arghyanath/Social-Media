@@ -13,6 +13,24 @@ export async function GET() {
                         name: true,
                         image: true
                     }
+                },
+                Like: true,
+                Comment: {
+
+                    select: {
+                        id: true,
+                        User: {
+                            select: {
+                                id: true,
+                                name: true,
+                                image: true
+                            },
+
+                        },
+                        comment: true,
+                        createdAt: true
+
+                    }
                 }
             },
             take: 10
