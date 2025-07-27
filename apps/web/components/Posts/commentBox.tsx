@@ -6,9 +6,11 @@ import Comment from "./comment";
 import { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { getTimePassed } from "../../utils/getTimePassed";
-import { doComment } from "../../lib/actions/doComment";
+import { doComment } from "../../lib/actions/leaveComment";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Skeleton } from "@/components/ui/skeleton"
+import { CommentSkeleton } from "./commentsSkelton";
 
 export default function CommentBox({ postId }: { postId: number }) {
     const [commentArr, setCommentArr] = useState<Array<Comments>>([])
@@ -34,20 +36,28 @@ export default function CommentBox({ postId }: { postId: number }) {
         setCommentArr(data)
     }, [data])
 
-
-    if (isPending) return 'Loading...'
-
     if (error) return 'An error has occurred: ' + error.message
 
 
     return (
         <>
             <div className="flex flex-col w-full h-66 border border-deepGray p-2 justify-between rounded">
-                <div className=" w-full overflow-scroll scrollbar-none ">
-                    {commentArr.map(c =>
-                        <Comment key={c.id} avatar={c.User.image} comment={c.comment} createdAt={getTimePassed(c.createdAt)} fullName={c.User.name} />
-                    )}
-                </div>
+                {isPending ? <div>
+                    <CommentSkeleton />
+                    <CommentSkeleton />
+                    <CommentSkeleton />
+
+                </div> :
+                    <div className=" w-full overflow-scroll scrollbar-none ">
+
+                        {commentArr.map(c =>
+                            <Comment key={c.id} avatar={c.User.image} comment={c.comment} createdAt={getTimePassed(c.createdAt)} fullName={c.User.name} />
+                        )}
+
+                    </div>
+                }
+
+
                 <div className=" flex gap-2 ">
                     <textarea ref={commentRef} className="w-full rounded px-2 py-1 outline-none border border-deepGray resize-none" placeholder="write something" ></textarea>
                     <Button varient="secondary" onClick={async (e) => {

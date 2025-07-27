@@ -12,9 +12,19 @@ export async function GET(request: NextRequest,
                 id: Number(userId)
             },
             select: {
+                id: true,
                 name: true,
                 image: true,
-                posts: true
+                posts: true,
+                Follower: true,
+                Following: true,
+                Saved: {
+                    select: {
+                        postId: true,
+                        userId: true,
+                        Post: true
+                    }
+                }
             }
         })
         return NextResponse.json({ user });

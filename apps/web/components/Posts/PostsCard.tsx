@@ -1,20 +1,22 @@
 "use client"
 import { ProfileIcon } from "@repo/ui/icons/profileIcon";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import CommentBox from "../Posts/commentBox";
 import { Icons } from "@repo/ui/icons/icons";
 import { useState } from "react";
 import { likePost } from "../../lib/actions/likePost";
 import { getTimePassed } from "../../utils/getTimePassed";
+import { savePost } from "@/lib/actions/savePost";
+import { unsavePost } from "@/lib/actions/unsavePost";
+
 
 
 export function PostsCard({ post, userId }: { post: Posts, userId: number }) {
     const router = useRouter()
-    const session = useSession()
     const [showComment, setShowComment] = useState(false)
     const [isLiked, setIsLiked] = useState(!!post.Like.find(l => l.userId === userId))
     const [likeCount, setLikeCount] = useState(post.Like.length)
+    const [isSaved, setIsSaved] = useState(!!post.Saved.find(sp => sp.userId === userId))
 
     return <div className=" w-full flex justify-center">
         <div className="flex justify-center w-4/5 flex-col gap-2 p-4 border-b-2 border-dark">
@@ -32,7 +34,7 @@ export function PostsCard({ post, userId }: { post: Posts, userId: number }) {
                         <ProfileIcon size="sm" imgUrl={String(post.User.image)} />
                     </div>
                     <div>
-                        <div>{post.User.name} </div>
+                        <div>{post.User.name}</div>
                         <div className="text-sm text-gray-300">{post.title}</div>
                     </div>
                 </div>
@@ -56,11 +58,25 @@ export function PostsCard({ post, userId }: { post: Posts, userId: number }) {
                         <Icons name="commentIcon" size="md" />{post.Comment.length}
                     </div>
                 </div>
-                <Icons name="saveIcon" size="md" />
+                <div onClick={(e) => {
+                    e.preventDefault()
+                    if (isSaved) {
+                        unsavePost(userId, post.id)
+                        setIsSaved(false)
+
+                    } else {
+                        savePost(userId, post.id)
+                        setIsSaved(true)
+                    }
+
+                }}>
+
+                    <div className={`${isSaved && "text-buttonBlue"}`}><Icons name="saveIcon" size="md" /></div>
+                </div>
             </div>
             {showComment &&
                 <div><CommentBox postId={post.id} /></div>}
         </div>
-    </div>
+    </div >
 
 }

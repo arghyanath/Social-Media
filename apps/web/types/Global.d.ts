@@ -7,7 +7,12 @@ interface Posts {
     createdAt: string,
     User: User,
     Like: Array<Likes>,
-    Comment: Array<Comments>
+    Comment: Array<Comments>,
+    Saved: [{
+        userId: number,
+        postId: number,
+        Post: Posts
+    }],
 
 }
 interface Likes {
@@ -26,5 +31,13 @@ interface Comments {
 interface User {
     id: number
     name: string,
-    image?: string
+    image?: string,
+    posts: Array<Posts>,
+    Saved: [{
+        userId: number,
+        postId: number,
+        Post: Posts
+    }],
+    Follower: [{ followerId: number }],
+    Following: [{ followingId: number }]
 }

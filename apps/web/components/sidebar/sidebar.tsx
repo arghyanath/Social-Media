@@ -9,10 +9,8 @@ export function Sidebar() {
         <div className="p-6 mt-16">
             <div className="flex flex-col gap-2">
                 <SidebarItem to="/home" title="Home" icon={<Icons size="lg" name='homeIcon' />} />
-                <SidebarItem to="/home" title="Search" icon={<Icons size="lg" name='searchIcon' />} />
                 <CreatePostButton />
                 <SidebarItem to="/messages" title="Messages" icon={<Icons size="lg" name='messageIcon' />} />
-                <SidebarItem to="/home" title="Notification" icon={<Icons size="lg" name='notificationIcon' />} />
                 <SidebarItem to="/saved" title="Saved" icon={<Icons size="lg" name='saveIcon' />} />
 
                 <SettingButton />

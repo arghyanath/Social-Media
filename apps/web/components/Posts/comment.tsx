@@ -6,9 +6,9 @@ export default function Comment({ comment, avatar, fullName, createdAt }: { comm
             <div className=" text-sm flex max-w-full p-2 gap-2 ">
                 <div><ProfileIcon imgUrl={String(avatar)} size="sm" /></div>
                 <div className=" flex flex-col w-full ">
-                    <div className="flex w-full justify-between  text-xs  text-liteGray">
+                    <div className="flex w-full gap-2 items-center   text-white">
                         <div>{fullName}</div>
-                        <div className="">{createdAt}</div>
+                        <div className="text-xs text-liteGray">{createdAt}</div>
                     </div>
                     <div className=" wrap-anywhere">{comment}</div>
                 </div>

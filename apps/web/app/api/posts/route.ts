@@ -7,11 +7,15 @@ export async function GET() {
                 createdAt: 'desc'
             },
             include: {
+                Saved: true,
                 User: {
                     select: {
                         id: true,
                         name: true,
-                        image: true
+                        image: true,
+                        Follower: true,
+                        Following: true,
+
                     }
                 },
                 Like: true,
@@ -23,7 +27,8 @@ export async function GET() {
                             select: {
                                 id: true,
                                 name: true,
-                                image: true
+                                image: true,
+
                             },
 
                         },

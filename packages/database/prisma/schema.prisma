@@ -20,15 +20,18 @@ model User {
   Following Follow[]  @relation("FollowingRelation")
   Like      Like[]
   Comment   Comment[]
+  Saved     Saved[]
 }
 
 model Follow {
-  id         Int  @id @default(autoincrement())
-  followerId Int  @unique
-  Follower   User @relation("FollowerRelation", fields: [followerId], references: [id])
+  createdAt  DateTime @default(now())
+  followerId Int
+  Follower   User     @relation("FollowingRelation", fields: [followerId], references: [id])
 
-  followingId Int  @unique
-  Following   User @relation("FollowingRelation", fields: [followingId], references: [id])
+  followingId Int
+  Following   User @relation("FollowerRelation", fields: [followingId], references: [id])
+
+  @@id(name: "followId", [followerId, followingId])
 }
 
 model Post {
@@ -41,6 +44,17 @@ model Post {
   userId    Int
   Like      Like[]
   Comment   Comment[]
+  Saved     Saved[]
+}
+
+model Saved {
+  createAt DateTime @default(now())
+  userId   Int
+  User     User     @relation(fields: [userId], references: [id])
+  postId   Int
+  Post     Post     @relation(fields: [postId], references: [id])
+
+  @@id(name: "saveId", [userId, postId])
 }
 
 model Like {

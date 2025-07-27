@@ -24,19 +24,19 @@ export function getTimePassed(givenDateString: string) {
     let timeElapsedString: string = "";
 
     if (years > 0) {
-        timeElapsedString = `${years} year${years > 1 ? 's' : ''} ago`;
+        timeElapsedString = `${years} year${years > 1 ? 's' : ''} `;
     } else if (months > 0) {
-        timeElapsedString = `${months} month${months > 1 ? 's' : ''} ago`;
+        timeElapsedString = `${months} month${months > 1 ? 's' : ''} `;
     } else if (weeks > 0) {
-        timeElapsedString = `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+        timeElapsedString = `${weeks} week${weeks > 1 ? 's' : ''} `;
     } else if (days > 0) {
-        timeElapsedString = `${days} day${days > 1 ? 's' : ''} ago`;
+        timeElapsedString = `${days} day${days > 1 ? 's' : ''} `;
     } else if (hours > 0) {
-        timeElapsedString = `${hours} hour${hours > 1 ? 's' : ''} ago`;
+        timeElapsedString = `${hours} hour${hours > 1 ? 's' : ''} `;
     } else if (minutes > 0) {
-        timeElapsedString = `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+        timeElapsedString = `${minutes} minute${minutes > 1 ? 's' : ''} `;
     } else if (seconds > 0) {
-        timeElapsedString = `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+        timeElapsedString = `${seconds} second${seconds > 1 ? 's' : ''} `;
     } else {
         timeElapsedString = "Just now";
     }
