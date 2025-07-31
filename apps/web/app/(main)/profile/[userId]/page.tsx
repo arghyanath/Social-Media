@@ -10,7 +10,7 @@ import { authOptions } from "../../../../lib/auth";
 export default async function Page({ params }: { params: Promise<{ userId: string }> }) {
 
     const { userId } = await params
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/profile/${userId}`)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/profile/${userId}`)
     const user: User = response.data.user
     const posts = user.posts
     const session = await getServerSession(authOptions)

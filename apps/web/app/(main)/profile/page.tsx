@@ -13,7 +13,7 @@ export default async function Profile() {
     const avatar = String(session.user.image);
     const id = String(session.user.id)
 
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/profile/${id}`)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/profile/${id}`)
     const user: User = response.data.user
     const posts = user.posts
 

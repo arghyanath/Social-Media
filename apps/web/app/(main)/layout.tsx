@@ -11,7 +11,7 @@ export default async function Layout({
 
     return (
 
-        <main className="px-6 pt-22 scrollbar-none ">
+        <main className="px-6 pt-16 scrollbar-none ">
 
             <Appbar />
             <Sidebar />

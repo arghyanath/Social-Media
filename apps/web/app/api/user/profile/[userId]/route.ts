@@ -16,8 +16,18 @@ export async function GET(request: NextRequest,
                 name: true,
                 image: true,
                 posts: true,
-                Follower: true,
-                Following: true,
+                Follower: {
+                    select: {
+                        followerId: true,
+                        Follower: true
+                    }
+                },
+                Following: {
+                    select: {
+                        followingId: true,
+                        Following: true
+                    }
+                },
                 Saved: {
                     select: {
                         postId: true,

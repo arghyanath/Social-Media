@@ -38,6 +38,26 @@ interface User {
         postId: number,
         Post: Posts
     }],
-    Follower: [{ followerId: number }],
-    Following: [{ followingId: number }]
+    Follower: [{ followerId: number, Follower: User }],
+    Following: [{ followingId: number, Following: User }]
+}
+interface Chats {
+    Sender: {
+        name: string
+        id: number;
+        image?: string;
+    };
+    Receiver: {
+        name: string
+        id: number;
+        image?: string
+    };
+}[]
+
+
+interface Messages {
+    senderId: number;
+    receiverId: number;
+    text: string;
+
 }

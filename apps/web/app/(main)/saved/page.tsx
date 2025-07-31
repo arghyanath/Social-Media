@@ -6,7 +6,7 @@ export default async function () {
     const session = await getServerSession(authOptions)
     if (!(session && session.user)) return <div>User not logged in</div>
     const id = String(session.user.id)
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/profile/${id}`)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/profile/${id}`)
     const user: User = response.data.user
     const saved = user.Saved
     return <div className="ml-58  p-6">
@@ -20,7 +20,7 @@ export default async function () {
 
                     </div>
                 </div>
-            ) : <div>No Saved posts</div>}
+            ) : <div className="text-white">No Saved posts</div>}
 
 
 

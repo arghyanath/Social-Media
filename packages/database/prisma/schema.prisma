@@ -21,6 +21,9 @@ model User {
   Like      Like[]
   Comment   Comment[]
   Saved     Saved[]
+
+  Sender   Chats[] @relation("sender")
+  Receiver Chats[] @relation("receiver")
 }
 
 model Follow {
@@ -32,6 +35,26 @@ model Follow {
   Following   User @relation("FollowerRelation", fields: [followingId], references: [id])
 
   @@id(name: "followId", [followerId, followingId])
+}
+
+model Chats {
+  id         Int       @id @default(autoincrement())
+  senderId   Int
+  Sender     User      @relation("receiver", fields: [senderId], references: [id])
+  receiverId Int
+  Receiver   User      @relation("sender", fields: [receiverId], references: [id])
+  Message    Message[]
+
+  @@unique(name: "chat", [senderId, receiverId])
+}
+
+model Message {
+  id         Int    @id @default(autoincrement())
+  chatId     Int
+  senderId   Int
+  receiverId Int
+  Sent       Chats  @relation(fields: [chatId], references: [id])
+  text       String
 }
 
 model Post {
