@@ -4,6 +4,7 @@ import { Input } from "@repo/ui/input";
 import { useRef } from "react";
 import { createUser } from "../../lib/actions/createUser";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 export default function RegisterInput() {
@@ -28,5 +29,6 @@ export default function RegisterInput() {
             }
 
         }}><div>Sign up</div></Button>
+        <div className=" text-liteGray text-sm text-center">Already have an account ? <span className=" underline hover:text-white"><Link href={"/api/auth/login"}>Login</Link></span> here</div>
     </div>
 }

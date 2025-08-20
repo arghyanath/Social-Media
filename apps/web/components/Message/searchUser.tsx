@@ -32,21 +32,39 @@ export default function SearchUser({ senderId, setReceiver }: { senderId: number
 
     function setData() {
         if (data === undefined) return
+
+        const uniqueIds = new Set();
+        const messages: { id: number, name: string, image?: string }[] = [];
+
         data.forEach(e => {
+            let user;
+
             if (e.Sender.id === senderId) {
-
-                setMessagedArr(m => [{ id: e.Receiver.id, name: e.Receiver.name, image: e.Receiver.image }, ...m])
-
+                user = e.Receiver;
+            } else if (e.Receiver.id === senderId) {
+                user = e.Sender;
             }
 
+            if (user && !uniqueIds.has(user.id)) {
+                uniqueIds.add(user.id);
+                messages.push({
+                    id: user.id,
+                    name: user.name,
+                    image: user.image
+                });
+            }
+        });
+
+        setMessagedArr(messages);
 
 
 
-        })
+
     }
 
     useEffect(() => {
         setData()
+
 
 
 
@@ -64,6 +82,7 @@ export default function SearchUser({ senderId, setReceiver }: { senderId: number
             <div className=" border-2 border-deepGray rounded-full relative" onClick={() => {
                 inputRef.current?.focus()
                 setSearchBox(e => !e)
+                console.log(messagedArr);
             }}>
                 <div className="flex gap-2 p-2">
 

@@ -37,7 +37,8 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ send
                         name: true
                     }
                 }
-            }
+            },
+
 
         })
         return NextResponse.json({

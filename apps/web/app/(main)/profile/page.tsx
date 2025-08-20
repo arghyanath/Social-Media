@@ -5,24 +5,27 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
 import axios from "axios";
 import { ProfileIcon } from "@repo/ui/icons/profileIcon";
+import UpdateProfile from "@/components/profile/updateProfile";
 
 export default async function Profile() {
     const session = await getServerSession(authOptions)
     if (!(session && session.user)) return <div>User not logged in</div>
     const fullName = String(session.user.name)
-    const avatar = String(session.user.image);
+
     const id = String(session.user.id)
 
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/profile/${id}`)
     const user: User = response.data.user
     const posts = user.posts
+    const avatar = String(user.image);
 
     return (
         <div className=" text-white flex  ml-58  p-6 ">
             <div className=" flex flex-col gap-4 px-6">
 
                 <div className="flex flex-col items-center">
-                    <ProfileIcon imgUrl={avatar} size="profile" />
+                    <UpdateProfile avatar={avatar} />
+
                     <div className=" text-white mt-4 text-2xl">{fullName}</div>
 
                 </div>

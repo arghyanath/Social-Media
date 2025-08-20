@@ -16,9 +16,9 @@ interface PropsType {
 
 export function ProfileIcon({ size, imgUrl }: PropsType) {
 
-    return <div className={style[size]}>
-        {imgUrl === "null" ? <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" className="rounded-full" alt="" /> :
-            <img className="rounded-full" src={imgUrl} />
+    return <div className={`${style[size]}  `}>
+        {imgUrl === "null" ? <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" className=" rounded-full" alt="" /> :
+            <img className={` ${style[size]} rounded-full object-contain`} src={imgUrl} />
         }
     </div>
 }

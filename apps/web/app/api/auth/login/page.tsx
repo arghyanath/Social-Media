@@ -9,7 +9,7 @@ export default function Login() {
 
     return <div className="w-screen h-screen flex justify-center items-center">
         <div className=" w-88 border border-deepGray flex flex-col gap-4 p-8">
-            <FormHeader><Button varient="primary"><div>Log in with Facebook</div></Button></FormHeader>
+            <FormHeader />
             <LoginInput />
 
         </div>

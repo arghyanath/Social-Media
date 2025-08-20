@@ -3,6 +3,7 @@ import { Button } from "@repo/ui/button"
 import { Input } from "@repo/ui/input"
 import { LoginUserSchema } from "@repo/zod/types";
 import { signIn } from "next-auth/react"
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
@@ -37,6 +38,7 @@ export default function LoginInput() {
             }
 
         }}><div>Login</div></Button>
+        <div className=" text-liteGray text-sm text-center">Don't have an account ? <span className=" underline hover:text-white"><Link href={"/api/auth/register"}>Register</Link></span> here</div>
     </div>
 }
 
