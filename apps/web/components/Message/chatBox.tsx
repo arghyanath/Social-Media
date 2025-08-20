@@ -14,8 +14,7 @@ export default function ChatBox({ senderId, receiver }: { senderId: number, rece
 
     const messageRef = useRef<HTMLTextAreaElement>(null)
     const [messages, setMessages] = useState<Messages[]>([])
-
-    const ws = new WebSocket("ws://localhost:8080")
+    const ws = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL}`)
 
     async function fetchChats() {
 
