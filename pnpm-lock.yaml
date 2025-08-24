@@ -23,6 +23,9 @@ importers:
       '@next/env':
         specifier: ^15.5.0
         version: 15.5.0
+      '@prisma/nextjs-monorepo-workaround-plugin':
+        specifier: ^6.14.0
+        version: 6.14.0
       '@radix-ui/react-label':
         specifier: ^2.1.7
         version: 2.1.7(@types/react-dom@19.1.1)(@types/react@19.1.0)(react-dom@19.1.0)(react@19.1.0)
@@ -74,6 +77,9 @@ importers:
       next-auth:
         specifier: ^4.24.11
         version: 4.24.11(next@15.3.0)(react-dom@19.1.0)(react@19.1.0)
+      nextjs-monorepo-workaround-plugin:
+        specifier: link:@types/@prisma/nextjs-monorepo-workaround-plugin
+        version: link:@types/@prisma/nextjs-monorepo-workaround-plugin
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -883,6 +889,10 @@ packages:
     resolution: {integrity: sha512-b2Z8oV2gwvdCkFemBTFd0x4lsL4O2jLSx8lB7D+XqoFALOQZPa7eAPE1NU0Mj1V8gPHRxIsHnyUNtw2i92psUw==}
     dependencies:
       '@prisma/debug': 6.11.1
+    dev: false
+
+  /@prisma/nextjs-monorepo-workaround-plugin@6.14.0:
+    resolution: {integrity: sha512-eZ9XTmL+r6TbTSlqLTrXaBha0PYLUIMqvbx+T3VSHxjeZYR7bURTDwPHrfNJWLTPKOYSR8RBFkGLOx4OwZ51Ug==}
     dev: false
 
   /@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.0)(react@19.1.0):
