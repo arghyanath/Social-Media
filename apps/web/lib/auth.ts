@@ -39,6 +39,14 @@ export const authOptions = {
         })
     ],
     secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+        async session({ token, session }: { token: JWT, session: Session }) {
+            if (session.user && token.sub) {
+                session.user.id = token.sub;
+            }
+            return session
+        }
+    },
     pages: {
         signIn: "/api/auth/login",
     }
